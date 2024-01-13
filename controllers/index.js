@@ -1,8 +1,8 @@
-import TransactionSchema from '../models/transaction.js';
+import Transaction from '../models/transaction.js';
 
 const createTransaction = async (req, res, next) => {
   const { text, amount } = req.body;
-  const transaction = new TransactionSchema({
+  const transaction = new Transaction({
     text: text,
     amount: amount
   });
@@ -17,7 +17,7 @@ const createTransaction = async (req, res, next) => {
 const deleteTransaction = async (req, res, next) => {
   const transactionId = req.params.id;
   try {
-    const deletedTransaction = await TransactionSchema.findByIdAndDelete(transactionId);
+    const deletedTransaction = await Transaction.findByIdAndDelete(transactionId);
     if (!deletedTransaction) {
       return res.status(404).json({ message: 'Transaction not found' });
     }
@@ -29,7 +29,7 @@ const deleteTransaction = async (req, res, next) => {
 
 const getAllTransactions = async (req, res, next) => {
   try {
-    const allTransactions = await TransactionSchema.find();
+    const allTransactions = await Transaction.find();
     res.json(allTransactions);
   } catch (error) {
     res.status(500).json({ message: 'Error retrieving transactions', error: error.message });

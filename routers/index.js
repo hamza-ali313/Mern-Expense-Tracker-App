@@ -1,7 +1,7 @@
 // Assuming your routes are defined in a file like transactionsRoutes.js
 
 import express from 'express';
-import { createTransaction,deleteTransaction,getAllTransactions } from '../controllers';
+import { createTransaction,deleteTransaction,getAllTransactions } from '../controllers/index.js';
 
 const router = express.Router();
 
